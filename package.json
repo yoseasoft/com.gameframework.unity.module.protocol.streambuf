@@ -1,0 +1,22 @@
+{
+  "name": "com.gameframework.unity.module.protocol.streambuf",
+  "displayName": "GameFramework.Module.Protocol.Streambuf",
+  "description": "The Protocol.Streambuf module package for GameFramework",
+  "version": "1.0.0",
+  "unity": "2018.3",
+  "unityRelease": "0f1",
+  "license": "MIT",
+  "keywords": [ "Unity", "GameFramework", "Streambuf" ],
+  "author": {
+    "name": "hurley",
+    "email": "yoseasoft@163.com",
+    "url": "https://github.com/yoseasoft/com.gameframework.unity.module.protocol.streambuf"
+  },
+  "repository": {
+    "name": "com.gameframework.unity.module.protocol.streambuf",
+    "type": "git",
+    "url": "https://github.com/yoseasoft/com.gameframework.unity.module.protocol.streambuf.git"
+  },
+  "relatedPackages": {},
+  "dependencies": {}
+}
