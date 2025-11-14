@@ -18,5 +18,7 @@
     "url": "https://github.com/yoseasoft/com.gameframework.unity.module.protocol.streambuf.git"
   },
   "relatedPackages": {},
-  "dependencies": {}
+  "dependencies": {
+    "com.yoseasoft.novaframework": "1.0.0"
+  }
 }
