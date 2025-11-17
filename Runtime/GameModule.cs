@@ -11,15 +11,15 @@ namespace Game.Module.Protocol.Streambuf
     /// <summary>
     /// 程序集的管理模块对象类
     /// </summary>
-    public static class GameModule
+    public class GameModule : GameEngine.IHotModule
     {
         /// <summary>
         /// 初始化回调函数
         /// </summary>
-        public static void OnInitialize()
+        public void Startup()
         {
-            GameEngine.NetworkHandler.Instance.SetMessageProtocolType(typeof(object));
-            GameEngine.NetworkHandler.Instance.RegMessageTranslator<WebSocketMessageTranslator>((int) NovaEngine.NetworkServiceType.WebSocket);
+            GameEngine.GameApi.SetMessageProtocolType(typeof(object));
+            GameEngine.GameApi.RegisterMessageTranslator<WebSocketMessageTranslator>((int) NovaEngine.NetworkServiceType.WebSocket);
 
             GameEngine.Loader.CodeLoader.RegisterSymbolResolverOfInstantiationClass<CommonMessageObjectClassResolver>();
         }
@@ -27,9 +27,9 @@ namespace Game.Module.Protocol.Streambuf
         /// <summary>
         /// 清理回调函数
         /// </summary>
-        public static void OnCleanup()
+        public void Shutdown()
         {
-            GameEngine.NetworkHandler.Instance.UnregMessageTranslator((int) NovaEngine.NetworkServiceType.WebSocket);
+            GameEngine.GameApi.UnregisterMessageTranslator((int) NovaEngine.NetworkServiceType.WebSocket);
 
             GameEngine.Loader.CodeLoader.UnregisterSymbolResolverOfInstantiationClass<CommonMessageObjectClassResolver>();
         }
