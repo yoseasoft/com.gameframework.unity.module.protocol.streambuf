@@ -18,8 +18,8 @@ namespace Game.Module.Protocol.Streambuf
         /// </summary>
         public static void OnInitialize()
         {
+            GameEngine.NetworkHandler.Instance.SetMessageProtocolType(typeof(object));
             GameEngine.NetworkHandler.Instance.RegMessageTranslator<WebSocketMessageTranslator>((int) NovaEngine.NetworkServiceType.WebSocket);
-            GameEngine.NetworkHandler.Instance.RegMessageProtocolLoader<CommonMessageProtocolLoader>();
 
             GameEngine.Loader.CodeLoader.RegisterSymbolResolverOfInstantiationClass<CommonMessageObjectClassResolver>();
         }
@@ -30,7 +30,6 @@ namespace Game.Module.Protocol.Streambuf
         public static void OnCleanup()
         {
             GameEngine.NetworkHandler.Instance.UnregMessageTranslator((int) NovaEngine.NetworkServiceType.WebSocket);
-            GameEngine.NetworkHandler.Instance.UnregMessageProtocolLoader();
 
             GameEngine.Loader.CodeLoader.UnregisterSymbolResolverOfInstantiationClass<CommonMessageObjectClassResolver>();
         }
