@@ -6,15 +6,14 @@
 /// 功能描述：
 /// </summary>
 
-using GameEngine;
-using NovaEngine;
+using System.Customize.Extension;
 
 namespace Game.Module.Protocol.Streambuf
 {
     /// <summary>
     /// 套接字类型通道的消息解析器对象类，用于对套接字通道的网络消息数据进行加工
     /// </summary>
-    public abstract class SocketMessageTranslator : IMessageTranslator
+    public abstract class SocketMessageTranslator : GameEngine.IMessageTranslator
     {
         /// <summary>
         /// 消息操作码的长度，以字节为单位
@@ -28,7 +27,7 @@ namespace Game.Module.Protocol.Streambuf
         /// <returns>若编码有效的数据则返回其对应的字节流，否则返回null</returns>
         public byte[] Encode(object message)
         {
-            int opcode = NetworkHandler.Instance.GetOpcodeByMessageType(message.GetType());
+            int opcode = GameEngine.NetworkHandler.Instance.GetOpcodeByMessageType(message.GetType());
 
             DataFabricEntry.Runtime.ISerializable serial = message as DataFabricEntry.Runtime.ISerializable;
             GameEngine.Debugger.Assert(serial, NovaEngine.ErrorText.InvalidArguments);
