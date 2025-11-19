@@ -4,7 +4,8 @@
     "references": [
         "Nova.Engine",
         "Nova.Basic",
-        "Nova.Import"
+        "Nova.Import",
+        "Nova.Streambuf"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

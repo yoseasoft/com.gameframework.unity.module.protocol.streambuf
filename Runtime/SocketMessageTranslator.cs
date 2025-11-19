@@ -7,6 +7,7 @@
 /// </summary>
 
 using GameEngine;
+using NovaEngine;
 
 namespace Game.Module.Protocol.Streambuf
 {
@@ -27,11 +28,19 @@ namespace Game.Module.Protocol.Streambuf
         /// <returns>若编码有效的数据则返回其对应的字节流，否则返回null</returns>
         public byte[] Encode(object message)
         {
-            byte[] buff = { 0x2C, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x7D, 0x2A,
-                            0xE1, 0x42, 0x01, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x01, 0x00, 0x08, 0x00, 0x72, 0x6F, 0x62, 0x6F,
-                            0x74, 0x5F, 0x5F, 0x31, 0x01, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x81, 0xA2, 0x6F, 0x73,
-                            0xA5, 0x72, 0x6F, 0x62, 0x6F, 0x74};
-            GameEngine.Debugger.Info("encode = {%i}", buff);
+            int opcode = NetworkHandler.Instance.GetOpcodeByMessageType(message.GetType());
+
+            DataFabricEntry.Runtime.ISerializable serial = message as DataFabricEntry.Runtime.ISerializable;
+            GameEngine.Debugger.Assert(serial, NovaEngine.ErrorText.InvalidArguments);
+
+            DataFabricEntry.Runtime.DFByteArray writer = new DataFabricEntry.Runtime.DFByteArray(256);
+            writer.Write(1);
+            writer.Write(opcode);
+            serial.Serialize(writer);
+
+            byte[] buff = writer.ToArray();
+            writer.Dispose();
+
             return buff;
         }
 
@@ -42,8 +51,21 @@ namespace Game.Module.Protocol.Streambuf
         /// <returns>返回解码后的消息内容，若解码失败则返回null</returns>
         public object Decode(byte[] buffer)
         {
-            GameEngine.Debugger.Info("decode = {%i}", buffer);
-            return null;
+            int serverId = buffer.ReadInt32(0);
+            int opcode = buffer.ReadInt32(4);
+            byte[] buff = new byte[buffer.Length - 8];
+            System.Array.Copy(buffer, 8, buff, 0, buffer.Length - 8);
+            object obj = CreateResponse(opcode, buff);
+            return obj;
+        }
+
+        DataFabricEntry.Runtime.IClientAPI CreateResponse(int hashCode, byte[] data)
+        {
+            var type = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetRequestType(hashCode);
+            var resp = (DataFabricEntry.Runtime.IClientAPI) System.Activator.CreateInstance(type);
+            var reader = new DataFabricEntry.Runtime.DFByteArray(data);
+            resp.DeSerialize(reader);
+            return resp;
         }
     }
 }

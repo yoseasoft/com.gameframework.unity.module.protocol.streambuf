@@ -18,7 +18,7 @@ namespace Game.Module.Protocol.Streambuf
         /// </summary>
         public void Startup()
         {
-            GameEngine.GameApi.SetMessageProtocolType(typeof(object));
+            GameEngine.GameApi.SetMessageProtocolType(typeof(DataFabricEntry.Runtime.ISerializable));
             GameEngine.GameApi.RegisterMessageTranslator<WebSocketMessageTranslator>((int) NovaEngine.NetworkServiceType.WebSocket);
 
             GameEngine.Loader.CodeLoader.RegisterSymbolResolverOfInstantiationClass<CommonMessageObjectClassResolver>();

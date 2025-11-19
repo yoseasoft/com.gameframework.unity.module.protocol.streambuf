@@ -20,11 +20,30 @@ namespace Game.Module.Protocol.Streambuf
     {
         public bool Matches(SystemType targetType)
         {
+            if (typeof(DataFabricEntry.Runtime.IServerAPI).IsAssignableFrom(targetType) ||
+                typeof(DataFabricEntry.Runtime.IClientAPI).IsAssignableFrom(targetType))
+            {
+                return true;
+            }
+
             return false;
         }
 
         public void Resolve(SymClass symbol)
         {
+            SystemType targetType = symbol.ClassType;
+
+            int opcode = 0, responseCode = 0;
+
+            opcode = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetRequest(targetType);
+
+            SystemType responseType = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetResponse(opcode);
+            // responseCode = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetRequest(responseType);
+
+            // Debugger.Warn("search protocol class '{%t}' has opcode = {%d}.", targetType, opcode);
+
+            MessageObjectAttribute attribute = new MessageObjectAttribute(opcode, responseCode);
+            symbol.AddFeatureObject(attribute);
         }
     }
 }
