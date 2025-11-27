@@ -19,6 +19,7 @@
   },
   "relatedPackages": {},
   "dependencies": {
-    "com.yoseasoft.novaframework": "1.0.0"
+    "com.yoseasoft.novaframework": "1.0.0",
+    "com.novaframework.unity.streambuf": "1.0.0"
   }
 }
