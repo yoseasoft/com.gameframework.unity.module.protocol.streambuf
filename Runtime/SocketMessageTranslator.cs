@@ -60,7 +60,7 @@ namespace Game.Module.Protocol.Streambuf
 
         DataFabricEntry.Runtime.IClientAPI CreateResponse(int hashCode, byte[] data)
         {
-            var type = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetResponse(hashCode);
+            var type = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetResponseMessage(hashCode);
             var resp = (DataFabricEntry.Runtime.IClientAPI) System.Activator.CreateInstance(type);
             var reader = new DataFabricEntry.Runtime.DFByteArray(data);
             resp.DeSerialize(reader);

@@ -19,7 +19,7 @@ namespace Game.Module.Protocol.Streambuf
     {
         public bool Matches(SystemType targetType)
         {
-            if (typeof(DataFabricEntry.Runtime.IServerAPI).IsAssignableFrom(targetType) ||
+            if (// typeof(DataFabricEntry.Runtime.IServerAPI).IsAssignableFrom(targetType) ||
                 typeof(DataFabricEntry.Runtime.IClientAPI).IsAssignableFrom(targetType))
             {
                 return true;
@@ -32,14 +32,11 @@ namespace Game.Module.Protocol.Streambuf
         {
             SystemType targetType = symbol.ClassType;
 
-            int opcode = 0, responseCode = 0;
+            int opcode = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetMessageOpcode(targetType);
 
-            opcode = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetRequest(targetType);
+            int responseCode = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetMessageResponseCode(targetType);
 
-            SystemType responseType = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetResponse(opcode);
-            // responseCode = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetRequest(responseType);
-
-            // Debugger.Warn("search protocol class '{%t}' has opcode = {%d}.", targetType, opcode);
+            // Debugger.Warn("search protocol class '{%t}' has opcode = {%d}, response code = {%d}.", targetType, opcode, responseCode);
 
             GameEngine.MessageObjectAttribute attribute = new GameEngine.MessageObjectAttribute(opcode, responseCode);
             symbol.AddFeatureObject(attribute);
