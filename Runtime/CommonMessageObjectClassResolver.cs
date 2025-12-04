@@ -6,7 +6,6 @@
 /// 功能描述：
 /// </summary>
 
-using GameEngine;
 using GameEngine.Loader.Symboling;
 
 using SystemType = System.Type;
@@ -42,7 +41,7 @@ namespace Game.Module.Protocol.Streambuf
 
             // Debugger.Warn("search protocol class '{%t}' has opcode = {%d}.", targetType, opcode);
 
-            MessageObjectAttribute attribute = new MessageObjectAttribute(opcode, responseCode);
+            GameEngine.MessageObjectAttribute attribute = new GameEngine.MessageObjectAttribute(opcode, responseCode);
             symbol.AddFeatureObject(attribute);
         }
     }

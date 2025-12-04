@@ -6,8 +6,6 @@
 /// 功能描述：
 /// </summary>
 
-using GameEngine;
-
 namespace Game.Module.Protocol.Streambuf
 {
     /// <summary>
