@@ -25,7 +25,7 @@ namespace Game.Module.Protocol.Streambuf
         /// </summary>
         /// <param name="message">消息内容</param>
         /// <returns>若编码有效的数据则返回其对应的字节流，否则返回null</returns>
-        public byte[] Encode(object message)
+        public virtual byte[] Encode(object message)
         {
             int opcode = GameEngine.NetworkHandler.Instance.GetOpcodeByMessageType(message.GetType());
 
@@ -48,7 +48,7 @@ namespace Game.Module.Protocol.Streambuf
         /// </summary>
         /// <param name="buffer">消息字节流</param>
         /// <returns>返回解码后的消息内容，若解码失败则返回null</returns>
-        public object Decode(byte[] buffer)
+        public virtual object Decode(byte[] buffer)
         {
             int serverId = buffer.ReadInt32(0);
             int opcode = buffer.ReadInt32(4);
@@ -60,7 +60,7 @@ namespace Game.Module.Protocol.Streambuf
 
         DataFabricEntry.Runtime.IClientAPI CreateResponse(int hashCode, byte[] data)
         {
-            var type = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetRequestType(hashCode);
+            var type = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetResponse(hashCode);
             var resp = (DataFabricEntry.Runtime.IClientAPI) System.Activator.CreateInstance(type);
             var reader = new DataFabricEntry.Runtime.DFByteArray(data);
             resp.DeSerialize(reader);
