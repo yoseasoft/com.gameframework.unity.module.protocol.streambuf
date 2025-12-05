@@ -19,7 +19,7 @@ namespace Game.Module.Protocol.Streambuf
         public void Startup()
         {
             GameEngine.GameApi.SetMessageProtocolType(typeof(DataFabricEntry.Runtime.ISerializable));
-            GameEngine.GameApi.RegisterMessageTranslator<WebSocketMessageTranslator>((int) NovaEngine.NetworkServiceType.WebSocket);
+            GameEngine.GameApi.RegisterMessageTranslator<WebSocketMessageTranslator>((int) NovaEngine.Module.NetworkServiceType.WebSocket);
 
             GameEngine.Loader.CodeLoader.RegisterSymbolResolverOfInstantiationClass<CommonMessageObjectClassResolver>();
         }
@@ -29,7 +29,7 @@ namespace Game.Module.Protocol.Streambuf
         /// </summary>
         public void Shutdown()
         {
-            GameEngine.GameApi.UnregisterMessageTranslator((int) NovaEngine.NetworkServiceType.WebSocket);
+            GameEngine.GameApi.UnregisterMessageTranslator((int) NovaEngine.Module.NetworkServiceType.WebSocket);
 
             GameEngine.Loader.CodeLoader.UnregisterSymbolResolverOfInstantiationClass<CommonMessageObjectClassResolver>();
         }
