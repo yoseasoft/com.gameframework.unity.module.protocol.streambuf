@@ -27,7 +27,8 @@ namespace Game.Module.Protocol.Streambuf
         /// <returns>若编码有效的数据则返回其对应的字节流，否则返回null</returns>
         public virtual byte[] Encode(object message)
         {
-            int opcode = GameEngine.NetworkHandler.Instance.GetOpcodeByMessageType(message.GetType());
+            // int opcode = GameEngine.NetworkHandler.Instance.GetOpcodeByMessageType(message.GetType());
+            int opcode = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetMessageOpcode(message.GetType());
 
             DataFabricEntry.Runtime.ISerializable serial = message as DataFabricEntry.Runtime.ISerializable;
             GameEngine.Debugger.Assert(serial, NovaEngine.ErrorText.InvalidArguments);
