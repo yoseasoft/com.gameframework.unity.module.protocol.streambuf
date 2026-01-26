@@ -6,7 +6,7 @@
 /// 功能描述：
 /// </summary>
 
-using GameEngine.Loader.Symboling;
+using GameEngine.Loader.Symbolling;
 
 using SystemType = System.Type;
 
