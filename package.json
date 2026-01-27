@@ -1,6 +1,6 @@
 {
   "name": "com.gameframework.unity.module.protocol.streambuf",
-  "displayName": "GameFramework.Module.Protocol.Streambuf",
+  "displayName": "GameFramework.Protocol.Streambuf",
   "description": "The Protocol.Streambuf module package for GameFramework",
   "version": "1.0.0",
   "unity": "2018.3",
