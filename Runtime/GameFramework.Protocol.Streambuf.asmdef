@@ -1,11 +1,11 @@
 {
-    "name": "Game.Module.Protocol.Streambuf",
+    "name": "GameFramework.Protocol.Streambuf",
     "rootNamespace": "",
     "references": [
-        "Nova.Engine",
-        "Nova.Basic",
-        "Nova.Import",
-        "Nova.Streambuf"
+        "NovaFramework.Streambuf",
+        "NovaEngine.Kernel",
+        "NovaEngine.Basic",
+        "NovaEngine.Import"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
