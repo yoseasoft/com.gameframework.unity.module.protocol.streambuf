@@ -6,7 +6,7 @@
 /// 功能描述：
 /// </summary>
 
-namespace Game.Module.Protocol.Streambuf
+namespace GameFramework.Protocol.Streambuf
 {
     /// <summary>
     /// 程序集的管理模块对象类

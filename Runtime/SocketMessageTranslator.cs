@@ -8,7 +8,7 @@
 
 using System.Customize.Extension;
 
-namespace Game.Module.Protocol.Streambuf
+namespace GameFramework.Protocol.Streambuf
 {
     /// <summary>
     /// 套接字类型通道的消息解析器对象类，用于对套接字通道的网络消息数据进行加工

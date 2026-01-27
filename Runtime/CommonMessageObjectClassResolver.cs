@@ -6,18 +6,16 @@
 /// 功能描述：
 /// </summary>
 
-using GameEngine.Loader.Symbolling;
+using System;
 
-using SystemType = System.Type;
-
-namespace Game.Module.Protocol.Streambuf
+namespace GameFramework.Protocol.Streambuf
 {
     /// <summary>
     /// 消息对象类解析器通用对象类
     /// </summary>
-    public class CommonMessageObjectClassResolver : ISymbolResolverOfInstantiationClass
+    public class CommonMessageObjectClassResolver : GameEngine.Loader.Symbolling.ISymbolResolverOfInstantiationClass
     {
-        public bool Matches(SystemType targetType)
+        public bool Matches(Type targetType)
         {
             if (// typeof(DataFabricEntry.Runtime.IServerAPI).IsAssignableFrom(targetType) ||
                 typeof(DataFabricEntry.Runtime.IClientAPI).IsAssignableFrom(targetType))
@@ -28,9 +26,9 @@ namespace Game.Module.Protocol.Streambuf
             return false;
         }
 
-        public void Resolve(SymClass symbol)
+        public void Resolve(GameEngine.Loader.Symbolling.SymClass symbol)
         {
-            SystemType targetType = symbol.ClassType;
+            Type targetType = symbol.ClassType;
 
             int opcode = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetMessageOpcode(targetType);
 

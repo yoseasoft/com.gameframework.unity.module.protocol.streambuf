@@ -6,7 +6,7 @@
 /// 功能描述：
 /// </summary>
 
-namespace Game.Module.Protocol.Streambuf
+namespace GameFramework.Protocol.Streambuf
 {
     /// <summary>
     /// TCP类型通道的消息解析器对象类，用于对TCP通道的网络消息数据进行加工
