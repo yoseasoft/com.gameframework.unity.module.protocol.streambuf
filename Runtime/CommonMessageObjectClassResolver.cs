@@ -15,7 +15,7 @@ namespace GameFramework.Protocol.Streambuf
     /// </summary>
     public class CommonMessageObjectClassResolver : GameEngine.Loader.Symbolling.ISymbolResolverOfInstantiationClass
     {
-        public bool Matches(Type targetType)
+        public bool IsMatched(Type targetType)
         {
             if (// typeof(DataFabricEntry.Runtime.IServerAPI).IsAssignableFrom(targetType) ||
                 typeof(DataFabricEntry.Runtime.IClientAPI).IsAssignableFrom(targetType))
