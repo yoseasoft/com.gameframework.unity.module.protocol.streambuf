@@ -2,7 +2,7 @@
   "name": "com.gameframework.unity.module.protocol.streambuf",
   "displayName": "GameFramework.Protocol.Streambuf",
   "description": "The Protocol.Streambuf module package for GameFramework",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "unity": "2018.3",
   "unityRelease": "0f1",
   "license": "MIT",

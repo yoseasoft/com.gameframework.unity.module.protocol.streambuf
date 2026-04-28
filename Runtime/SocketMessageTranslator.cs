@@ -31,7 +31,7 @@ namespace GameFramework.Protocol.Streambuf
             int opcode = DataFabricEntry.Runtime.MsgPackHelper.ProtoApi.GetMessageOpcode(message.GetType());
 
             DataFabricEntry.Runtime.ISerializable serial = message as DataFabricEntry.Runtime.ISerializable;
-            GameEngine.Debugger.Assert(serial, NovaEngine.ErrorText.InvalidArguments);
+            GameEngine.Debugger.IsNotNull(serial);
 
             DataFabricEntry.Runtime.DFByteArray writer = new DataFabricEntry.Runtime.DFByteArray(256);
             writer.Write(1);
